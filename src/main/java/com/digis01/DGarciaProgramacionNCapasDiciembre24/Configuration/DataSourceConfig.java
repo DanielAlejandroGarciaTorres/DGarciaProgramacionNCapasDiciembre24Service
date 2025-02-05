@@ -5,6 +5,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
 
 @Configuration
 public class DataSourceConfig {
@@ -24,4 +27,26 @@ public class DataSourceConfig {
     public JdbcTemplate jdbcTemplate(DataSource dataSource){
         return new JdbcTemplate(dataSource);
     }
+    
+    
+    @Bean 
+    public CorsFilter corsFilter(){
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        CorsConfiguration config = new CorsConfiguration();
+        
+        config.addAllowedOrigin("*");
+        
+        config.addAllowedMethod("GET");
+        config.addAllowedMethod("POST");
+        config.addAllowedMethod("PUT");
+        config.addAllowedMethod("DELETE");
+        
+        config.addAllowedHeader("*");
+        
+        source.registerCorsConfiguration("/**", config);
+        
+        return new CorsFilter(source);
+        
+    }
+    
 }

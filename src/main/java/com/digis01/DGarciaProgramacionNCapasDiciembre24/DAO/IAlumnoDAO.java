@@ -4,6 +4,7 @@
  */
 package com.digis01.DGarciaProgramacionNCapasDiciembre24.DAO;
 
+import com.digis01.DGarciaProgramacionNCapasDiciembre24.JPA.Alumno;
 import com.digis01.DGarciaProgramacionNCapasDiciembre24.JPA.AlumnoDireccion;
 import com.digis01.DGarciaProgramacionNCapasDiciembre24.JPA.Result;
 
@@ -16,5 +17,5 @@ public interface IAlumnoDAO {
     
     Result GetAllJPA();
     
-    Result AddJPA(AlumnoDireccion alumnoDireccion);
+    Result AddJPA(Alumno alumno, int IdAlumno);
 }

@@ -1,5 +1,6 @@
 package com.digis01.DGarciaProgramacionNCapasDiciembre24.DAO;
 
+import com.digis01.DGarciaProgramacionNCapasDiciembre24.JPA.Alumno;
 import com.digis01.DGarciaProgramacionNCapasDiciembre24.JPA.AlumnoDireccion;
 import com.digis01.DGarciaProgramacionNCapasDiciembre24.JPA.Result;
 import jakarta.persistence.EntityManager;
@@ -59,21 +60,22 @@ public class AlumnoDAOImplementation implements IAlumnoDAO {
 
     @Transactional // DML Insert/update/delete
     @Override
-    public Result AddJPA(AlumnoDireccion alumnoDireccion) {
+    public Result AddJPA(Alumno alumno, int idAlumno) {
 
-//        com.digis01.DGarciaProgramacionNCapasDiciembre24.JPA.Alumno alumnoJPA = new com.digis01.DGarciaProgramacionNCapasDiciembre24.JPA.Alumno();
-//        alumnoJPA.setNombre("Ramón");
-//        alumnoJPA.setApellidoPaterno("Valdez");
-//        alumnoJPA.setApellidoMaterno("Valdez");
-//        alumnoJPA.setUserName("Rorro");
-//        alumnoJPA.setPassword("rorro123");
-//        alumnoJPA.setTelefono("1234560089");
-//        alumnoJPA.Semestre = new com.digis01.DGarciaProgramacionNCapasDiciembre24.JPA.Semestre();
-//        alumnoJPA.Semestre.setIdSemestre(1);
-//
-//        entityManager.persist(alumnoJPA);
+        Result result = new Result();
+        try {
+            
+            entityManager.persist(alumno);
+            idAlumno  = alumno.getIdAlumno();
+            result.correct = true;
+            
+        }   catch (Exception ex){
+            result.correct = false;
+            result.errorMessage = ex.getLocalizedMessage();
+            result.ex = ex;
+        }   
 
-        return new Result();
+        return result;
     }
 
     @Override
