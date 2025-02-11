@@ -43,7 +43,22 @@ public class AlumnoRestController {
     @PostMapping("/CargaMasiva")
     public ResponseEntity CargaMasiva(@RequestParam("archivo") MultipartFile archivo){
         
-        return ResponseEntity.ok().body(new Result());
+        //almacenamiento del archivo - absolutePath
+        //lectura
+        // valido
+        
+        //Si todo OK
+        Result result = new Result();
+        /*Todo bien, se retorna informacion de archivo correcto */
+        result.correct = true;
+        result.object = "Ruta";
+        return ResponseEntity.ok().body(result);
+        
+        /*todo mal, se retorna lista de errores*/
+//        result.correct = false;
+//        result.object = null ; // lista errores (Result excel)
+        
+//        return ResponseEntity.badRequest().body(result);
     }
     
     
